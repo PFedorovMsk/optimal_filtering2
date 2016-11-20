@@ -188,7 +188,7 @@ void MainWindow::showData(Core::PtrFilter filter)
     QColor  color = m_colorManager.nextColor();
     QString fname = QString::fromStdString(filter->info()->name());
 
-    QPen mxPen, sxPen, sePen;
+    QPen mxPen, sxPen, sePen, mePen;
     mxPen.setWidthF(2.0);
     mxPen.setColor(Qt::darkMagenta);
     sxPen.setWidthF(1.5);
@@ -196,6 +196,8 @@ void MainWindow::showData(Core::PtrFilter filter)
     sxPen.setStyle(Qt::DashLine);
     sePen.setWidthF(1.5);
     sePen.setColor(color);
+    mePen.setWidthF(1.5);
+    mePen.setColor(Qt::darkGreen);
 
     int dim = int(filter->result()[0].meanX.size());
     if (m_graphWindow->countSheets() != dim) {
@@ -242,6 +244,9 @@ void MainWindow::showData(Core::PtrFilter filter)
 
         Core::GetStdDeviationE(filter->result(), i, y, scale[i]);
         m_graphWindow->sheet(i).addCurve(x, y, "Se" + QString::number(i + 1) + " " + fname, sePen, true);
+
+        Core::GetMeanE(filter->result(), i, y, scale[i]);
+        m_graphWindow->sheet(i).addCurve(x, y, "Me" + QString::number(i + 1), mePen, false);
     }
 
     m_graphWindow->updatePlotter();
