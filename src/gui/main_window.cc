@@ -246,7 +246,7 @@ void MainWindow::showData(Core::PtrFilter filter)
         m_graphWindow->sheet(i).addCurve(x, y, "Se" + QString::number(i + 1) + " " + fname, sePen, true);
 
         Core::GetMeanE(filter->result(), i, y, scale[i]);
-        m_graphWindow->sheet(i).addCurve(x, y, "Me" + QString::number(i + 1), mePen, false);
+        m_graphWindow->sheet(i).addCurve(x, y, "Me" + QString::number(i + 1) + " " + fname, mePen, false);
     }
 
     m_graphWindow->updatePlotter();
