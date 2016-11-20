@@ -64,6 +64,8 @@ HEADERS += \
     src/tasks/continuous_discrete/cd_vanderpol_linear.h \
     src/tasks/discrete/d_landing_gauss.h \
     src/tasks/discrete/d_landing_linear.h \
+    src/tasks/discrete/d_vanderpol_gauss.h \
+    src/tasks/discrete/d_vanderpol_linear.h \
     src/tasks/tasks_factory.h \
     src/array.h \
     src/config.h \
@@ -349,6 +351,8 @@ SOURCES += \
     src/tasks/continuous_discrete/cd_vanderpol_linear.cc \
     src/tasks/discrete/d_landing_gauss.cc \
     src/tasks/discrete/d_landing_linear.cc \
+    src/tasks/discrete/d_vanderpol_linear.cc \
+    src/tasks/discrete/d_vanderpol_gauss.cc \
     src/tasks/tasks_factory.cc \
     src/main.cc \
     third_party/qcustomplot/qcustomplot.cc

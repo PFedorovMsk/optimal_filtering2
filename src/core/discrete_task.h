@@ -33,11 +33,20 @@ public:
     */
     virtual Vector a(const Vector &x) const = 0;
 
+    //! \brief Функция диффузии объекта \f$B(t,x)\f$.
+    virtual Matrix B(const Vector &x) const = 0;
+
     /*! \brief Функция измерителя \f$b(X_k) = b_k(X_k, W_k)\f$.
 
         Шум \f$W_k\f$ генерируется внутри.
     */
     virtual Vector b(const Vector &x) const = 0;
+
+    /*! \brief Функция измерителя \f$c_k(X_k) = c_k(X_k, W_k)\f$.
+
+        Шум \f$W_k\f$ генерируется внутри.
+    */
+    virtual Vector c(const Vector &x) const = 0;
 
     /*! \brief Структурная функция прогноза \f$\tau_k(m, D)\f$.
 
@@ -62,6 +71,16 @@ public:
         Здесь \f$A_k^x(x) = \nabla_x a_k(x,M[V_k]),\ A_k^v(x) = \nabla_v a_k(x,M[V_k])\f$.
     */
     virtual Matrix Theta(const Vector &m, const Matrix &D) const = 0;
+
+    /*! \brief Возвращает матрицу якоби \f$A(t, m, D)\f$ для функции \f$\tau(t, m, D)\f$.
+
+        Она имеет следующий вид для
+
+        * * гауссовского приближения: \f[A(t, m, D) = \frac{d}{dm} \tau(t, m),\f]
+
+        * * линеаризованного приближения: \f[A(t, m, D) = \frac{d}{dm} a(t, m).\f]
+    */
+    virtual Matrix A(const Vector &m, const Matrix &D) const = 0;
 
     /*! \brief Структурная функция коррекции \f$h_k(m, D)\f$.
 

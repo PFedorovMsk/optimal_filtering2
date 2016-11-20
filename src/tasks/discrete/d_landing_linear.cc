@@ -188,6 +188,42 @@ Matrix LandingLinear::dbdw(const Vector &x) const
     return res;
 }
 
+Matrix LandingLinear::A(const Vector &m, const Matrix & /*D*/) const
+{
+//    double e = exp(-BB * m[2]);
+//    Matrix res(m_dimX, m_dimX);
+
+//    res(0, 0) = -2.0 * CC * m[0] * e;
+//    res(0, 1) = -GG * cos(m[1]);
+//    res(0, 2) = BB * CC * m[0] * m[0] * e;
+
+//    res(1, 0) = CC * k(m_time) * e + (GG / (m[0] * m[0]) + 1.0 / (RR + m[2])) * cos(m[1]);
+//    res(1, 1) = (GG / m[0] - m[0] / (RR + m[2])) * sin(m[1]);
+//    res(1, 2) = -CC * BB * k(m_time) * m[0] * e - m[0] * cos(m[1]) / ((RR + m[2]) * (RR + m[2]));
+
+//    res(2, 0) = sin(m[1]);
+//    res(2, 1) = m[0] * cos(m[1]);
+//    res(2, 2) = 0.0;
+
+//    return res;
+}
+
+Vector LandingLinear::c(const Vector &x) const
+{
+//    double e = exp(-BB * x[2]);
+//    Vector w = gaussianVector(m_meanW, m_varW);
+//    Vector res(m_dimY);
+
+//    res[0] = CC * (w[0] + 1.0) * x[0] * x[0] * e * (cos(x[1]) - k(m_time) * sin(x[1])) + w[2];
+//    res[1] = CC * (w[1] + 1.0) * x[0] * x[0] * e * (sin(x[1]) - k(m_time) * cos(x[1])) + w[3];
+
+//    return res;
+}
+
+Matrix LandingLinear::B(const Vector & /*x*/) const
+{
+//    return Matrix::Zero(3, 3); // WARNING: size?
+}
 
 } // end Tasks::Discrete
 

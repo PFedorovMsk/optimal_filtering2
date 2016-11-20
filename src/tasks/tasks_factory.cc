@@ -70,14 +70,14 @@ PtrTask TaskFactory::createDiscrete(TASK_ID id, APPROX_TYPE type)
         case TASK_ID::Landing:
             return PtrTask(new Tasks::Discrete::LandingLinear);
         case TASK_ID::VanDerPol:
-            return PtrTask(nullptr); // WARNING
+            return PtrTask(new Tasks::Discrete::VanDerPolLinear);
         }
     case APPROX_TYPE::Gauss:
         switch (id) {
         case TASK_ID::Landing:
             return PtrTask(new Tasks::Discrete::LandingGauss);
         case TASK_ID::VanDerPol:
-            return PtrTask(nullptr); // WARNING
+            return PtrTask(new Tasks::Discrete::VanDerPolGauss);
         }
     }
     return PtrTask(nullptr);
