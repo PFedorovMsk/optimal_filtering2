@@ -299,7 +299,8 @@ void GraphWindow::onRangesChanged(Math::Vector2 x, Math::Vector2 y)
     range.yMax = y[1];
     m_currentSheet->setAxisRange(range);
     m_currentSheet->setAutoCalcRanges(false);
-    m_actionSetAutoRanges->setChecked(false); // вызывает updatePlotter()
+    m_actionSetAutoRanges->setChecked(false);
+    updatePlotter();
 }
 
 void GraphWindow::onSavePng()
@@ -422,8 +423,8 @@ int GraphWindow::countSheets() const
 
 GraphSheet &GraphWindow::sheet(int index)
 {
-    assert(index >= 0);
-    assert(index < m_sheets.size());
+    assert(0 <= index && index < m_sheets.size() && "GraphWindow::sheet(index) : out of range");
+
     return m_sheets[index];
 }
 

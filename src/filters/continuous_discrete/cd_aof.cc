@@ -8,15 +8,14 @@ namespace ContinuousDiscrete
 {
 
 
-using Math::Rand::gaussianVector;
-using Math::LinAlg::PinvSVD;
+using Math::LinAlg::Pinv;
 
 
 AOF::AOF(Core::PtrFilterParameters params, Core::PtrTask task)
     : ContinuousDiscreteFilter(params, task)
 {
     long n = task->dimX();
-    m_info->setName(m_task->info()->type() + "AОФнд (" + std::to_string(n * (n + 3) / 2) + ")");
+    m_info->setName(m_task->info()->type() + "AОФнд (p=" + std::to_string(n * (n + 3) / 2) + ")");
 }
 
 void AOF::zeroIteration()
@@ -42,7 +41,7 @@ void AOF::algorithm()
         // Индекс s пробегает по всем элементам выборки:
         for (size_t s = 0; s < m_params->sampleSize(); ++s) {
             m_sampleX[s] = m_sampleX[s] + m_task->a(m_sampleX[s]) * m_params->integrationStep() +
-                           m_task->B(m_sampleX[s]) * gaussianVector(m_task->dimV(), 0.0, sqrtdt);
+                           m_task->B(m_sampleX[s]) * sqrtdt * m_normalRand(m_task->dimV());
 
             A            = m_task->A(m_sampleZ[s], m_sampleP[s]);
             Theta        = m_task->Theta(m_sampleZ[s], m_sampleP[s]);
@@ -63,7 +62,7 @@ void AOF::algorithm()
                 h = m_task->h(m_sampleZ[s], m_sampleP[s]);
                 G = m_task->G(m_sampleZ[s], m_sampleP[s]);
                 F = m_task->F(m_sampleZ[s], m_sampleP[s]);
-                K = m_sampleP[s] * G.transpose() * PinvSVD(F);
+                K = m_sampleP[s] * G.transpose() * Pinv(F);
 
                 m_sampleZ[s] = m_sampleZ[s] + K * (m_sampleY[s] - h);
                 m_sampleP[s] = m_sampleP[s] - K * G * m_sampleP[s];

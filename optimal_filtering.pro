@@ -34,6 +34,7 @@ HEADERS += \
     src/filters/discrete/d_fos.h \
     src/filters/discrete/d_mfos.h \
     src/filters/filters_factory.h \
+    src/gui/additional_settings_widget.h \
     src/gui/color_manager.h \
     src/gui/filter_parameters_widget.h \
     src/gui/filter_results_table.h \
@@ -325,6 +326,7 @@ SOURCES += \
     src/filters/discrete/d_fos.cc \
     src/filters/discrete/d_mfos.cc \
     src/filters/filters_factory.cc \
+    src/gui/additional_settings_widget.cc \
     src/gui/color_manager.cc \
     src/gui/filter_parameters_widget.cc \
     src/gui/filter_results_table.cc \
@@ -356,3 +358,4 @@ SOURCES += \
     src/tasks/tasks_factory.cc \
     src/main.cc \
     third_party/qcustomplot/qcustomplot.cc
+
